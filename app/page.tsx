@@ -1,3 +1,5 @@
+"use server";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,8 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { getCommittee } from "@/data-access/committee";
 
-export default function Home() {
+export default async function Home() {
+  const committee = await getCommittee();
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* Hero Section */}
@@ -118,54 +123,19 @@ export default function Home() {
           Executive Committee
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <Card>
-            <CardHeader className="flex flex-col items-center">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                {/* Future picture goes here */}
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col items-center">
-              <div className="text-lg font-bold mb-1">
-                Stefanie L. Barnes, Esq.
-              </div>
-              <div className="italic text-gray-600">President</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-col items-center">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                {/* Future picture goes here */}
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col items-center">
-              <div className="text-lg font-bold mb-1">
-                Matthew St. Martin, Esq.
-              </div>
-              <div className="italic text-gray-600">Vice President</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-col items-center">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                {/* Future picture goes here */}
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col items-center">
-              <div className="text-lg font-bold mb-1">Megan Shay, Esq.</div>
-              <div className="italic text-gray-600">Secretary/Treasurer</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-col items-center">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                {/* Future picture goes here */}
-              </div>
-            </CardHeader>
-            <CardContent className="flex flex-col items-center">
-              <div className="text-lg font-bold mb-1">Pam Gardner, Esq.</div>
-              <div className="italic text-gray-600">2nd Vice President</div>
-            </CardContent>
-          </Card>
+          {committee?.map((member) => (
+            <Card key={member.id}>
+              <CardHeader className="flex flex-col items-center">
+                <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
+                  {/* Future picture goes here */}
+                </div>
+              </CardHeader>
+              <CardContent className="flex flex-col items-center">
+                <div className="text-lg font-bold mb-1">{member.name}</div>
+                <div className="italic text-gray-600">{member.position}</div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
     </main>

@@ -22,25 +22,25 @@ export default function Header() {
           </Link>
           <nav className="flex items-center space-x-4">
             <Link
-              href="/membership"
+              href="#"
               className="text-base font-medium text-gray-700 hover:text-black"
             >
               Membership
             </Link>
             <Link
-              href="/member-list"
+              href="/members"
               className="text-base font-medium text-gray-700 hover:text-black"
             >
               Member List
             </Link>
             <Link
-              href="/public-resources"
+              href="#"
               className="text-base font-medium text-gray-700 hover:text-black"
             >
               Public Resources
             </Link>
             <Link
-              href="/contact"
+              href="#"
               className="text-base font-medium text-gray-700 hover:text-black"
             >
               Contact
