@@ -72,8 +72,8 @@ export default function CurrentMembersPage() {
               Renewals after January 1 will be assessed a late fee of $15.
             </p>
             <p className="font-semibold text-red-600">
-              Members who haven't renewed by February 1 are considered lapsed
-              and will be removed from the Membership List.
+              Members who haven&apos;t renewed by February 1 are considered
+              lapsed and will be removed from the Membership List.
             </p>
           </div>
         </div>
@@ -124,8 +124,8 @@ export default function CurrentMembersPage() {
           <div className="space-y-4">
             <h4 className="text-xl font-bold">Pay by Check</h4>
             <p>
-              Checks are payable to "WCBA". Please indicate the member name(s)
-              renewing.
+              Checks are payable to &quot;WCBA&quot;. Please indicate the member
+              name(s) renewing.
             </p>
             <div>
               <p className="font-semibold mb-2">Mail check to:</p>

@@ -280,7 +280,7 @@ export default async function PublicResourcesPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            U.S. Attorney's Office, Western District of NY
+            U.S. Attorney&apos;s Office, Western District of NY
           </a>
           <a
             href="https://www.vinelink.com/vinelink/initMap.do"

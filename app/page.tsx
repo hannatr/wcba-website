@@ -1,6 +1,7 @@
 "use server";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,10 +22,12 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center text-gray-900 overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
-          <img
+          <Image
             src="/images/Wayne_County_Courthouse.jpg"
             alt="Wayne County Courthouse"
-            className="w-full h-full object-cover object-top"
+            fill
+            priority
+            className="object-cover object-top"
             style={{ filter: "brightness(0.65)" }}
           />
         </div>

@@ -121,8 +121,8 @@ export default function NewMembersPage() {
                 <p>Lyons, NY 14489</p>
               </div>
               <p className="text-sm text-gray-600">
-                Please include a check payable to "WCBA" for the appropriate
-                membership dues.
+                Please include a check payable to &quot;WCBA&quot; for the
+                appropriate membership dues.
               </p>
             </div>
           </div>

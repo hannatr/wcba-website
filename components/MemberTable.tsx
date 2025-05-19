@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, AlertCircle } from "lucide-react";
+import { Json } from "@/data-access/database.types";
 
 interface MemberTableProps {
   members: Member[] | null;
@@ -34,7 +35,7 @@ export default function MemberTable({ members }: MemberTableProps) {
     new Set()
   );
 
-  const formatCategories = (categories: any): string[] => {
+  const formatCategories = (categories: Json | null): string[] => {
     if (!categories) return [];
 
     const parsedCategories = Array.isArray(categories) ? categories : [];
@@ -110,8 +111,8 @@ export default function MemberTable({ members }: MemberTableProps) {
             <p className="font-semibold mb-1">CATEGORIES</p>
             <p>
               Note that members may list up to 4 practice categories but often
-              handle other types of cases. See the "Other" category or call
-              individual members for further inquiries.
+              handle other types of cases. See the &quot;Other&quot; category or
+              call individual members for further inquiries.
             </p>
           </div>
         </div>
