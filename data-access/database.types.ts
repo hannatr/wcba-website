@@ -31,6 +31,7 @@ export type Database = {
         Row: {
           address: string | null
           address2: string | null
+          categories: Json | null
           city: string | null
           email: string | null
           fax: string | null
@@ -45,6 +46,7 @@ export type Database = {
         Insert: {
           address?: string | null
           address2?: string | null
+          categories?: Json | null
           city?: string | null
           email?: string | null
           fax?: string | null
@@ -59,6 +61,7 @@ export type Database = {
         Update: {
           address?: string | null
           address2?: string | null
+          categories?: Json | null
           city?: string | null
           email?: string | null
           fax?: string | null
