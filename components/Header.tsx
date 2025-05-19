@@ -34,13 +34,13 @@ export default function Header() {
               Member List
             </Link>
             <Link
-              href="#"
+              href="/public-resources"
               className="text-base font-medium text-gray-700 hover:text-black"
             >
               Public Resources
             </Link>
             <Link
-              href="#"
+              href="/contact"
               className="text-base font-medium text-gray-700 hover:text-black"
             >
               Contact

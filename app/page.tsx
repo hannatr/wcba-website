@@ -12,7 +12,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { getCommittee } from "@/data-access/committee";
 
-export default async function Home() {
+export default async function HomePage() {
   const committee = await getCommittee();
 
   return (
