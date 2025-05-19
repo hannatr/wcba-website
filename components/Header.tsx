@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function Header() {
   return (
     <header className="w-full bg-white shadow">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="container mx-auto py-3 flex items-center justify-between">
         <div className="flex items-center space-x-6">
           <Link href="/" className="flex items-center space-x-3">
             <Image
@@ -22,10 +22,10 @@ export default function Header() {
           </Link>
           <nav className="flex items-center space-x-4">
             <Link
-              href="#"
+              href="/current-members"
               className="text-base font-medium text-gray-700 hover:text-black"
             >
-              Membership
+              Current Members
             </Link>
             <Link
               href="/members"
@@ -47,9 +47,11 @@ export default function Header() {
             </Link>
           </nav>
         </div>
-        <Button asChild className="ml-6 bg-red-600 text-white hover:bg-red-700">
-          <Link href="#">Join Today</Link>
-        </Button>
+        <Link href="/new-members">
+          <Button className="ml-6 bg-red-600 text-white hover:bg-red-700 cursor-pointer">
+            Join Today
+          </Button>
+        </Link>
       </div>
     </header>
   );

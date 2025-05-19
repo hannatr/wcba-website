@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Footer() {
@@ -12,7 +13,16 @@ export default function Footer() {
         <div>
           <p>waynecountybarny@gmail.com</p>
           <p>Attorney Referral Resource:</p>
-          <p>New York State Bar Lawyer Referral Service</p>
+          <p>
+            <Link
+              href="https://nysba.intouchondemand.com/findlawyer/search"
+              className="hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              New York State Bar Lawyer Referral Service
+            </Link>
+          </p>
         </div>
       </div>
       <div className="text-center mt-4">

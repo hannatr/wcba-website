@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getCommittee } from "@/data-access/committee";
+import { Calendar, BookOpen } from "lucide-react";
 
 export default async function HomePage() {
   const committee = await getCommittee();
@@ -21,9 +22,9 @@ export default async function HomePage() {
       <section className="relative h-[60vh] flex items-center justify-center text-gray-900 overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/home-hero.jpeg"
-            alt="Scales of Justice at Sunrise"
-            className="w-full h-full object-cover object-center"
+            src="/images/Wayne_County_Courthouse.jpg"
+            alt="Wayne County Courthouse"
+            className="w-full h-full object-cover object-top"
             style={{ filter: "brightness(0.65)" }}
           />
         </div>
@@ -35,55 +36,51 @@ export default async function HomePage() {
             Serving the Wayne County New York Legal Community Since 1921
           </p>
           <div className="flex gap-4 justify-center">
-            <Button className="bg-black p-8 text-xl text-white hover:bg-gray-700">
-              <Link href="#">Current Members</Link>
-            </Button>
-            <Button className="bg-red-600 p-8 text-xl text-white hover:bg-red-700">
-              <Link href="#">Join Today</Link>
-            </Button>
+            <Link href="/current-members">
+              <Button className="bg-black p-8 text-xl text-white hover:bg-gray-700 cursor-pointer">
+                Current Members
+              </Button>
+            </Link>
+            <Link href="/new-members">
+              <Button className="bg-red-600 p-8 text-xl text-white hover:bg-red-700 cursor-pointer">
+                Join Today
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
       <section className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Membership Card */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-red-600">Membership</CardTitle>
-              <CardDescription>Join our professional community</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-4">
-                Access exclusive benefits and resources for legal professionals.
-              </p>
-              <Button className="w-full bg-red-600 text-white hover:bg-red-700">
-                Learn More
-              </Button>
-            </CardContent>
-          </Card>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Events Card */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-red-600">Events</CardTitle>
-              <CardDescription>Upcoming legal events</CardDescription>
+              <CardTitle className="text-red-600 flex items-center gap-2">
+                <Calendar className="h-6 w-6" />
+                Events
+              </CardTitle>
+              <CardDescription>Upcoming WCBA Events</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="mb-4">
-                Stay updated with our latest CLE programs and networking events.
+                Stay updated with our latest meeting, networking and CLE events.
               </p>
-              <Button className="w-full bg-red-600 text-white hover:bg-red-700">
-                View Calendar
-              </Button>
+              <Link href="/events">
+                <Button className="w-full bg-red-600 text-white hover:bg-red-700 cursor-pointer">
+                  View Calendar
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
           {/* Resources Card */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-red-600">Resources</CardTitle>
+              <CardTitle className="text-red-600 flex items-center gap-2">
+                <BookOpen className="h-6 w-6" />
+                Resources
+              </CardTitle>
               <CardDescription>Member resources and tools</CardDescription>
             </CardHeader>
             <CardContent>
@@ -91,9 +88,11 @@ export default async function HomePage() {
                 Access legal forms, guidelines, and professional development
                 materials.
               </p>
-              <Button className="w-full bg-red-600 text-white hover:bg-red-700">
-                Browse Resources
-              </Button>
+              <Link href="/public-resources">
+                <Button className="w-full bg-red-600 text-white hover:bg-red-700 cursor-pointer">
+                  Browse Resources
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>

@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-export default function Disclaimer() {
+interface DisclaimerProps {
+  showMemberDirectory?: boolean;
+}
+
+export default function Disclaimer({
+  showMemberDirectory = true,
+}: DisclaimerProps) {
   return (
     <>
       <p className="mb-4">
@@ -22,8 +28,10 @@ export default function Disclaimer() {
         </strong>{" "}
         You may contact the{" "}
         <Link
-          href="https://www.nysba.org/referral-service"
+          href="https://nysba.intouchondemand.com/findlawyer/search"
           className="text-blue-600 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           New York State Bar Association Lawyer Referral Service
         </Link>{" "}
@@ -32,15 +40,17 @@ export default function Disclaimer() {
           LR@nysba.org
         </a>
       </p>
-      <p className="mb-4">
-        Our directory of Wayne County Bar Association members is made public to
-        assist you in finding contact information for our members and the types
-        of cases that each attorney handles.{" "}
-        <Link href="/members" className="text-blue-600 hover:underline">
-          View our member directory
-        </Link>
-        .
-      </p>
+      {showMemberDirectory && (
+        <p className="mb-4">
+          Our directory of Wayne County Bar Association members is made public
+          to assist you in finding contact information for our members and the
+          types of cases that each attorney handles.{" "}
+          <Link href="/members" className="text-blue-600 hover:underline">
+            View our member directory
+          </Link>
+          .
+        </p>
+      )}
     </>
   );
 }
