@@ -33,10 +33,12 @@ export type Database = {
           address2: string | null
           categories: Json | null
           city: string | null
+          dues_paid: string | null
           email: string | null
           fax: string | null
           firm: string | null
           id: number
+          membership: string | null
           name: string
           phone: string | null
           state: string | null
@@ -48,10 +50,12 @@ export type Database = {
           address2?: string | null
           categories?: Json | null
           city?: string | null
+          dues_paid?: string | null
           email?: string | null
           fax?: string | null
           firm?: string | null
           id?: number
+          membership?: string | null
           name: string
           phone?: string | null
           state?: string | null
@@ -63,10 +67,12 @@ export type Database = {
           address2?: string | null
           categories?: Json | null
           city?: string | null
+          dues_paid?: string | null
           email?: string | null
           fax?: string | null
           firm?: string | null
           id?: number
+          membership?: string | null
           name?: string
           phone?: string | null
           state?: string | null

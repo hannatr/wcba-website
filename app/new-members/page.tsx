@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import MemberForm from "@/components/MemberForm";
 
 export default function NewMembersPage() {
   return (
@@ -72,16 +73,13 @@ export default function NewMembersPage() {
                   Apply Online
                 </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle className="text-red-600">
-                    Coming Soon
+                    Membership Application
                   </DialogTitle>
                 </DialogHeader>
-                <p className="text-center py-4">
-                  Online application processing is currently under development.
-                  Please use the mail-in application option below.
-                </p>
+                <MemberForm />
               </DialogContent>
             </Dialog>
           </div>
