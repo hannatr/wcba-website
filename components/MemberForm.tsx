@@ -63,7 +63,7 @@ const STATES = [
 
 interface MemberFormProps {
   member?: Member;
-  onSubmit?: (data: any) => void;
+  onSubmit?: (data: FormData) => void;
   instructions: string;
 }
 
@@ -86,11 +86,10 @@ export default function MemberForm({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
     if (onSubmit) {
-      onSubmit(data);
+      onSubmit(formData);
     } else {
-      console.log("Form submitted:", data);
+      console.log("Form submitted:", formData);
     }
   };
 

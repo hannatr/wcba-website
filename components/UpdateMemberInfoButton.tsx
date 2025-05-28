@@ -21,11 +21,6 @@ export default function UpdateMemberInfoButton() {
     setSelectedMember(member);
   };
 
-  const handleClose = () => {
-    setIsOpen(false);
-    setSelectedMember(null);
-  };
-
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
