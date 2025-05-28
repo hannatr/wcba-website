@@ -20,3 +20,19 @@ export async function getMembers(): Promise<Member[] | null> {
 
   return data;
 }
+
+export async function getMember(email: string): Promise<Member | null> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("members")
+    .select("*")
+    .eq("email", email);
+
+  if (error) {
+    console.error("[getMember] Error fetching member:", error.message);
+    return null;
+  }
+
+  return data[0] || null;
+}

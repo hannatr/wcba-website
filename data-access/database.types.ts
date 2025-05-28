@@ -33,6 +33,7 @@ export type Database = {
           address2: string | null
           categories: Json | null
           city: string | null
+          display_email: boolean
           dues_paid: string | null
           email: string | null
           fax: string | null
@@ -50,6 +51,7 @@ export type Database = {
           address2?: string | null
           categories?: Json | null
           city?: string | null
+          display_email?: boolean
           dues_paid?: string | null
           email?: string | null
           fax?: string | null
@@ -67,6 +69,7 @@ export type Database = {
           address2?: string | null
           categories?: Json | null
           city?: string | null
+          display_email?: boolean
           dues_paid?: string | null
           email?: string | null
           fax?: string | null

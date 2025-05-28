@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import type { Member } from "@/data-access/members";
+import { memberships } from "@/actions/types/members";
 
 const STATES = [
   "AL",
@@ -59,20 +61,37 @@ const STATES = [
   "WY",
 ];
 
-const MEMBERSHIP_TYPES = [
-  { id: "attorney", label: "Attorney Member", price: 100 },
-  { id: "affiliate", label: "Affiliate Member", price: 30 },
-];
+interface MemberFormProps {
+  member?: Member;
+  onSubmit?: (data: any) => void;
+  instructions: string;
+}
 
-export default function MemberForm() {
-  const [membershipType, setMembershipType] = useState("");
+export default function MemberForm({
+  member,
+  onSubmit,
+  instructions,
+}: MemberFormProps) {
+  const [membershipType, setMembershipType] = useState(
+    member?.membership || ""
+  );
   const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    if (member) {
+      setIsFormValid(true);
+    }
+  }, [member]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
-    console.log("Form submitted:", data);
+    if (onSubmit) {
+      onSubmit(data);
+    } else {
+      console.log("Form submitted:", data);
+    }
   };
 
   const handleFormChange = (e: React.FormEvent<HTMLFormElement>) => {
@@ -84,10 +103,6 @@ export default function MemberForm() {
     setIsFormValid(isAllRequiredFilled && membershipType !== "");
   };
 
-  const selectedPrice = MEMBERSHIP_TYPES.find(
-    (t) => t.id === membershipType
-  )?.price;
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -95,11 +110,7 @@ export default function MemberForm() {
       className="space-y-6"
     >
       <div className="text-sm text-gray-500 space-y-2">
-        <p>
-          Please complete this form to apply for membership in the Wayne County
-          Bar Association. Information provided will be displayed in the Member
-          Directory.
-        </p>
+        <p>{instructions}</p>
       </div>
 
       <div className="space-y-4">
@@ -114,9 +125,9 @@ export default function MemberForm() {
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <option value="">Select membership type</option>
-            {MEMBERSHIP_TYPES.map((type) => (
-              <option key={type.id} value={type.id}>
-                {type.label} - ${type.price}
+            {memberships.map((type) => (
+              <option key={type.name} value={type.name}>
+                {type.display} - ${type.price}
               </option>
             ))}
           </select>
@@ -129,6 +140,7 @@ export default function MemberForm() {
             name="name"
             placeholder="Enter your full name"
             required
+            defaultValue={member?.name || ""}
             className="w-full"
           />
         </div>
@@ -139,6 +151,7 @@ export default function MemberForm() {
             id="firm"
             name="firm"
             placeholder="Enter your firm name"
+            defaultValue={member?.firm || ""}
             className="w-full"
           />
         </div>
@@ -149,6 +162,7 @@ export default function MemberForm() {
             id="address"
             name="address"
             placeholder="Enter your street address"
+            defaultValue={member?.address || ""}
             className="w-full"
           />
         </div>
@@ -159,6 +173,7 @@ export default function MemberForm() {
             id="address2"
             name="address2"
             placeholder="Apartment, suite, unit, etc."
+            defaultValue={member?.address2 || ""}
             className="w-full"
           />
         </div>
@@ -170,6 +185,7 @@ export default function MemberForm() {
               id="city"
               name="city"
               placeholder="Enter your city"
+              defaultValue={member?.city || ""}
               className="w-full"
             />
           </div>
@@ -179,6 +195,7 @@ export default function MemberForm() {
             <select
               id="state"
               name="state"
+              defaultValue={member?.state || ""}
               className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <option value="">Select a state</option>
@@ -197,6 +214,7 @@ export default function MemberForm() {
               name="zip"
               type="number"
               placeholder="Enter your ZIP code"
+              defaultValue={member?.zip?.toString() || ""}
               className="w-full"
             />
           </div>
@@ -209,6 +227,7 @@ export default function MemberForm() {
               id="phone"
               name="phone"
               placeholder="Enter your phone number"
+              defaultValue={member?.phone || ""}
               className="w-full"
             />
           </div>
@@ -219,6 +238,7 @@ export default function MemberForm() {
               id="fax"
               name="fax"
               placeholder="Enter your fax number"
+              defaultValue={member?.fax || ""}
               className="w-full"
             />
           </div>
@@ -228,7 +248,11 @@ export default function MemberForm() {
           <div className="flex items-center justify-between">
             <Label htmlFor="email">Email Address *</Label>
             <div className="flex items-center space-x-2">
-              <Checkbox id="displayEmail" name="displayEmail" defaultChecked />
+              <Checkbox
+                id="displayEmail"
+                name="displayEmail"
+                defaultChecked={member?.display_email || true}
+              />
               <Label htmlFor="displayEmail" className="text-sm font-normal">
                 Display email in directory
               </Label>
@@ -240,6 +264,7 @@ export default function MemberForm() {
             type="email"
             placeholder="Enter your email address"
             required
+            defaultValue={member?.email || ""}
             className="w-full"
           />
         </div>
@@ -250,6 +275,7 @@ export default function MemberForm() {
             id="website"
             name="website"
             placeholder="Enter your website URL"
+            defaultValue={member?.website || ""}
             className="w-full"
           />
         </div>
@@ -265,7 +291,7 @@ export default function MemberForm() {
         className="w-full bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={!isFormValid}
       >
-        {selectedPrice ? `Pay Dues: $${selectedPrice}` : "Submit Information"}
+        Submit
       </Button>
     </form>
   );

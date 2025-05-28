@@ -1,17 +1,10 @@
-"use client";
+"use server";
 
 import { Separator } from "@/components/ui/separator";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import MemberForm from "@/components/MemberForm";
+import NewMemberButton from "@/components/NewMemberButton";
+import DownloadAppButton from "@/components/DownloadAppButton";
 
-export default function NewMembersPage() {
+export default async function NewMembersPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <section className="container mx-auto mb-8">
@@ -67,21 +60,7 @@ export default function NewMembersPage() {
               Complete your membership application and submit payment through
               our secure online system.
             </p>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button className="bg-red-600 text-white hover:bg-red-700 cursor-pointer">
-                  Apply Online
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                  <DialogTitle className="text-red-600">
-                    Membership Application
-                  </DialogTitle>
-                </DialogHeader>
-                <MemberForm />
-              </DialogContent>
-            </Dialog>
+            <NewMemberButton />
           </div>
 
           <div className="space-y-4">
@@ -91,24 +70,7 @@ export default function NewMembersPage() {
               it with your payment.
             </p>
             <div className="space-y-4">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button className="bg-red-600 text-white hover:bg-red-700 cursor-pointer">
-                    Download Application Form
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle className="text-red-600">
-                      Coming Soon
-                    </DialogTitle>
-                  </DialogHeader>
-                  <p className="text-center py-4">
-                    The application form is currently being updated. Please
-                    check back soon!
-                  </p>
-                </DialogContent>
-              </Dialog>
+              <DownloadAppButton />
               <div>
                 <p className="font-semibold mb-2">
                   Mail completed application and payment to:
