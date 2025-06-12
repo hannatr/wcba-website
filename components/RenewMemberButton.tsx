@@ -14,6 +14,7 @@ export default function RenewMemberButton() {
   const [isLoading, setIsLoading] = useState(false);
   const [showMembershipDialog, setShowMembershipDialog] = useState(false);
 
+  /* Original renewal logic - preserved for future implementation
   const handleRenewal = async (membershipType: "attorney" | "affiliate") => {
     try {
       setIsLoading(true);
@@ -41,6 +42,7 @@ export default function RenewMemberButton() {
       setShowMembershipDialog(false);
     }
   };
+  */
 
   return (
     <Dialog open={showMembershipDialog} onOpenChange={setShowMembershipDialog}>
@@ -55,11 +57,11 @@ export default function RenewMemberButton() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-red-600">
-            Select Membership Type
+            Feature Coming Soon
           </DialogTitle>
         </DialogHeader>
         <div className="space-y-4 py-4">
-          <Button
+          {/* <Button
             onClick={() => handleRenewal("attorney")}
             className="w-full bg-red-600 text-white hover:bg-red-700 cursor-pointer"
             disabled={isLoading}
@@ -72,7 +74,11 @@ export default function RenewMemberButton() {
             disabled={isLoading}
           >
             Affiliate Member - $30.00
-          </Button>
+          </Button> */}
+          <p className="text-center text-gray-600">
+            Online membership renewal will be available soon. Please check back
+            later.
+          </p>
         </div>
       </DialogContent>
     </Dialog>

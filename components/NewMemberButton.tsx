@@ -21,14 +21,18 @@ export default function NewMemberButton() {
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-red-600">
-            New Member Application
+            {/* New Member Application */}Feature Coming Soon
           </DialogTitle>
         </DialogHeader>
-        <MemberForm
+        {/* <MemberForm
           instructions="Please complete this form to apply for membership in the Wayne County
           Bar Association. Information provided will be displayed in the
           Member Directory. You are required to pay dues in full at the time of application."
-        />
+        /> */}
+        <p className="text-center text-gray-600">
+          Online membership application will be available soon. Please check
+          back later.
+        </p>
       </DialogContent>
     </Dialog>
   );
