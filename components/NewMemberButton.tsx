@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import MemberForm from "@/components/MemberForm";
+// import MemberForm from "@/components/MemberForm";
 
 export default function NewMemberButton() {
   return (

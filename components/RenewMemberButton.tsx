@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 
 export default function RenewMemberButton() {
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [showMembershipDialog, setShowMembershipDialog] = useState(false);
 
   /* Original renewal logic - preserved for future implementation
@@ -49,9 +49,10 @@ export default function RenewMemberButton() {
       <DialogTrigger asChild>
         <Button
           className="bg-red-600 text-white hover:bg-red-700 cursor-pointer"
-          disabled={isLoading}
+          // disabled={isLoading}
         >
-          {isLoading ? "Processing..." : "Renew Membership Online"}
+          {/* {isLoading ? "Processing..." : "Renew Membership Online"} */}
+          Renew Membership Online
         </Button>
       </DialogTrigger>
       <DialogContent>
