@@ -104,7 +104,7 @@ export default function MemberTable({ members }: MemberTableProps) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start gap-4">
+      <div className="flex flex-col lg:flex-row items-start gap-4">
         <div className="flex items-start space-x-2 text-sm text-muted-foreground bg-muted/50 p-4 rounded-lg flex-1">
           <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
           <div>
@@ -118,7 +118,7 @@ export default function MemberTable({ members }: MemberTableProps) {
         </div>
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="outline" className="w-[200px] justify-between">
+            <Button variant="outline" className="w-full lg:w-[200px] justify-between">
               {selectedCategories.size > 0
                 ? `${selectedCategories.size} categories selected`
                 : "Filter by categories"}

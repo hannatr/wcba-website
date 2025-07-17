@@ -6,7 +6,7 @@ import Disclaimer from "@/components/Disclaimer";
 export default async function ContactPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <section className="container mx-auto mb-8">
+      <section className="container mx-auto px-4 mb-8">
         <h2 className="text-3xl font-bold mb-4 text-red-600">Contact Us</h2>
 
         <Separator className="my-8" />

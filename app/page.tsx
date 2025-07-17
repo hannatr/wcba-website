@@ -35,17 +35,17 @@ export default async function HomePage() {
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
             Wayne County Bar Association
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-white drop-shadow">
+          <p className="text-lg md:text-2xl mb-8 text-white drop-shadow">
             Serving the Wayne County New York Legal Community Since 1921
           </p>
           <div className="flex gap-4 justify-center">
             <Link href="/current-members">
-              <Button className="bg-black p-8 text-xl text-white hover:bg-gray-700 cursor-pointer">
+              <Button className="bg-black p-4 md:p-8 text-base md:text-xl text-white hover:bg-gray-700 cursor-pointer">
                 Current Members
               </Button>
             </Link>
             <Link href="/new-members">
-              <Button className="bg-red-600 p-8 text-xl text-white hover:bg-red-700 cursor-pointer">
+              <Button className="bg-red-600 p-4 md:p-8 text-base md:text-xl text-white hover:bg-red-700 cursor-pointer">
                 Join Today
               </Button>
             </Link>
