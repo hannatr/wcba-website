@@ -48,7 +48,6 @@ export type Membership = {
   name: string;
   display: string;
   price: number;
-  stripePriceId: string;
 };
 
 export const memberships: Membership[] = [
@@ -56,12 +55,10 @@ export const memberships: Membership[] = [
     name: "attorney",
     display: "Attorney Member",
     price: 100,
-    stripePriceId: "price_123456789",
   },
   {
     name: "affiliate",
     display: "Affiliate Member",
     price: 30,
-    stripePriceId: "price_987654321",
   },
 ];
