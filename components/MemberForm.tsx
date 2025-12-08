@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { Member } from "@/data-access/members";
 import { memberships } from "@/actions/types/members";
 import CategorySelector from "@/components/CategorySelector";
@@ -66,7 +66,7 @@ const STATES = [
 
 interface MemberFormProps {
   member?: Member;
-  onSubmit?: (data: FormData) => void;
+  onSubmit?: (data: FormData) => Promise<void> | void;
   instructions: string;
 }
 
@@ -78,42 +78,65 @@ export default function MemberForm({
   const [membershipType, setMembershipType] = useState(
     member?.membership || ""
   );
-  const [isFormValid, setIsFormValid] = useState(false);
   const [categories, setCategories] = useState<MemberCategories>(
     (member?.categories as MemberCategories) || []
   );
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [formRef, setFormRef] = useState<HTMLFormElement | null>(null);
 
+  // Validate form based on required fields
+  const validateForm = useCallback((form: HTMLFormElement) => {
+    const requiredFields = form.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[required]");
+    const isAllRequiredFilled = Array.from(requiredFields).every(
+      (field) => field.value.trim() !== ""
+    );
+    return isAllRequiredFilled;
+  }, []);
+
+  // Update form validity when form or member changes
   useEffect(() => {
-    if (member) {
+    if (formRef) {
+      setIsFormValid(validateForm(formRef));
+    } else if (member) {
+      // If member is provided, assume form is valid initially
       setIsFormValid(true);
     }
-  }, [member]);
+  }, [formRef, validateForm, member]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+
+    if (!validateForm(form)) {
+      return;
+    }
+
+    const formData = new FormData(form);
     formData.append("categories", JSON.stringify(categories));
     if (onSubmit) {
-      onSubmit(formData);
+      await onSubmit(formData);
     } else {
       console.log("Form submitted:", formData);
     }
   };
 
-  const handleFormChange = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormChange = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     const form = e.currentTarget;
-    const requiredFields = form.querySelectorAll("[required]");
-    const isAllRequiredFilled = Array.from(requiredFields).every(
-      (field) => (field as HTMLInputElement).value.trim() !== ""
-    );
-    setIsFormValid(isAllRequiredFilled && membershipType !== "");
-  };
+    setIsFormValid(validateForm(form));
+  }, [validateForm]);
+
+  const handleMembershipTypeChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = e.target.value;
+    setMembershipType(newValue);
+  }, []);
 
   return (
     <form
+      ref={setFormRef}
       onSubmit={handleSubmit}
       onChange={handleFormChange}
       className="space-y-6"
+      noValidate
     >
       <div className="text-sm text-gray-500 space-y-2">
         <p>{instructions}</p>
@@ -122,13 +145,12 @@ export default function MemberForm({
       <ScrollArea className="h-[60vh] pr-4">
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="membershipType">Membership Type *</Label>
+            <Label htmlFor="membershipType">Membership Type</Label>
             <select
               id="membershipType"
               name="membershipType"
               value={membershipType}
-              onChange={(e) => setMembershipType(e.target.value)}
-              required
+              onChange={handleMembershipTypeChange}
               className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <option value="">Select membership type</option>
@@ -304,6 +326,7 @@ export default function MemberForm({
         type="submit"
         className="w-full bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={!isFormValid}
+        aria-disabled={!isFormValid}
       >
         Submit
       </Button>
