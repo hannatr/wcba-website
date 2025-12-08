@@ -24,10 +24,11 @@ export async function getMembers(): Promise<Member[] | null> {
 export async function getMember(email: string): Promise<Member | null> {
   const supabase = await createClient();
 
+  // Use case-insensitive email matching
   const { data, error } = await supabase
     .from("members")
     .select("*")
-    .eq("email", email);
+    .ilike("email", email);
 
   if (error) {
     console.error("[getMember] Error fetching member:", error.message);
