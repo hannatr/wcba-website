@@ -1,0 +1,16 @@
+---
+description: Always run a production build after code changes
+alwaysApply: true
+---
+
+# Build Verification Requirement
+
+After making any code change, run:
+
+```bash
+npm run build
+```
+
+Before reporting completion, confirm whether the build passed or failed.
+
+If it fails, fix the issue when feasible and rerun `npm run build` until it passes or a blocker is identified.

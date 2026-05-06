@@ -31,7 +31,7 @@ export const isCustomCategory = (
   category: unknown
 ): category is CustomCategory => {
   return (
-    category &&
+    category !== null &&
     typeof category === "object" &&
     "type" in category &&
     category.type === MemberCategory.Other &&
