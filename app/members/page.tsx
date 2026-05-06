@@ -1,8 +1,8 @@
 "use server";
 
-import { getMembers } from "@/data-access/members";
-import MemberTable from "@/components/MemberTable";
 import Disclaimer from "@/components/Disclaimer";
+import MemberTable from "@/components/MemberTable";
+import { getMembers } from "@/data-access/members";
 
 export default async function MembersPage() {
   const members = await getMembers();

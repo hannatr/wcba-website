@@ -1,7 +1,7 @@
 "use server";
 
-import { Separator } from "@/components/ui/separator";
 import RenewMemberButton from "@/components/RenewMemberButton";
+import { Separator } from "@/components/ui/separator";
 import UpdateMemberInfoButton from "@/components/UpdateMemberInfoButton";
 
 export default async function CurrentMembersPage() {

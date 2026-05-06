@@ -1,7 +1,9 @@
 "use server";
 
-import Link from "next/link";
+import { Calendar, BookOpen } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getCommittee } from "@/data-access/committee";
-import { Calendar, BookOpen } from "lucide-react";
+
 
 export default async function HomePage() {
   const committee = await getCommittee();

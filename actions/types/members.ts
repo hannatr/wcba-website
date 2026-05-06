@@ -27,7 +27,9 @@ export type CustomCategory = {
 
 export type MemberCategories = (MemberCategory | CustomCategory)[];
 
-export const isCustomCategory = (category: any): category is CustomCategory => {
+export const isCustomCategory = (
+  category: unknown
+): category is CustomCategory => {
   return (
     category &&
     typeof category === "object" &&
@@ -37,7 +39,9 @@ export const isCustomCategory = (category: any): category is CustomCategory => {
   );
 };
 
-export const isMemberCategory = (category: any): category is MemberCategory => {
+export const isMemberCategory = (
+  category: unknown
+): category is MemberCategory => {
   return (
     typeof category === "string" &&
     Object.values(MemberCategory).includes(category as MemberCategory)

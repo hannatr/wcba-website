@@ -1,7 +1,7 @@
 "use server";
 
-import { createClient } from "@/data-access/supabaseClient";
 import { Database } from "@/data-access/database.types";
+import { createClient } from "@/data-access/supabaseClient";
 
 export type Committee = Database["public"]["Tables"]["committee"]["Row"];
 

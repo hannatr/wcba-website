@@ -1,7 +1,19 @@
 "use client";
 
+import { ChevronDown, AlertCircle } from "lucide-react";
 import { useState } from "react";
+
+import { isCustomCategory, isMemberCategory } from "@/actions/types/members";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -10,19 +22,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Member } from "@/data-access/members";
-import { isCustomCategory, isMemberCategory } from "@/actions/types/members";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { ChevronDown, AlertCircle } from "lucide-react";
 import { Json } from "@/data-access/database.types";
+import { Member } from "@/data-access/members";
 
 interface MemberTableProps {
   members: Member[] | null;

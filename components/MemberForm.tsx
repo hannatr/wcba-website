@@ -1,15 +1,16 @@
 "use client";
 
+import { useState, useCallback } from "react";
+
+import { memberships } from "@/actions/types/members";
+import type { MemberCategories } from "@/actions/types/members";
+import CategorySelector from "@/components/CategorySelector";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useState, useEffect, useCallback } from "react";
 import type { Member } from "@/data-access/members";
-import { memberships } from "@/actions/types/members";
-import CategorySelector from "@/components/CategorySelector";
-import type { MemberCategories } from "@/actions/types/members";
 
 const STATES = [
   "AL",
@@ -81,8 +82,7 @@ export default function MemberForm({
   const [categories, setCategories] = useState<MemberCategories>(
     (member?.categories as MemberCategories) || []
   );
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [formRef, setFormRef] = useState<HTMLFormElement | null>(null);
+  const [isFormValid, setIsFormValid] = useState(Boolean(member));
 
   // Validate form based on required fields
   const validateForm = useCallback((form: HTMLFormElement) => {
@@ -93,15 +93,16 @@ export default function MemberForm({
     return isAllRequiredFilled;
   }, []);
 
-  // Update form validity when form or member changes
-  useEffect(() => {
-    if (formRef) {
-      setIsFormValid(validateForm(formRef));
-    } else if (member) {
-      // If member is provided, assume form is valid initially
-      setIsFormValid(true);
-    }
-  }, [formRef, validateForm, member]);
+  const handleFormRef = useCallback(
+    (form: HTMLFormElement | null) => {
+      if (form) {
+        setIsFormValid(validateForm(form));
+      } else if (member) {
+        setIsFormValid(true);
+      }
+    },
+    [validateForm, member]
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -132,7 +133,7 @@ export default function MemberForm({
 
   return (
     <form
-      ref={setFormRef}
+      ref={handleFormRef}
       onSubmit={handleSubmit}
       onChange={handleFormChange}
       className="space-y-6"

@@ -1,8 +1,8 @@
 "use server";
 
-import { Separator } from "@/components/ui/separator";
-import NewMemberButton from "@/components/NewMemberButton";
 import DownloadAppButton from "@/components/DownloadAppButton";
+import NewMemberButton from "@/components/NewMemberButton";
+import { Separator } from "@/components/ui/separator";
 
 export default async function NewMembersPage() {
   return (

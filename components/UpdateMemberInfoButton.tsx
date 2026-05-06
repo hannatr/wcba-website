@@ -1,18 +1,20 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+
+import { submitMemberUpdateRequest } from "@/actions/members";
+import GetMemberForm from "@/components/GetMemberForm";
+import MemberForm from "@/components/MemberForm";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import GetMemberForm from "@/components/GetMemberForm";
-import MemberForm from "@/components/MemberForm";
 import type { Member } from "@/data-access/members";
-import { submitMemberUpdateRequest } from "@/actions/members";
 
 export default function UpdateMemberInfoButton() {
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
@@ -88,6 +90,11 @@ export default function UpdateMemberInfoButton() {
           <DialogTitle className="text-red-600">
             {selectedMember ? "Update Member Information" : "Find Member"}
           </DialogTitle>
+          <DialogDescription>
+            {selectedMember
+              ? "Review your member details and submit requested updates."
+              : "Search for your member record before requesting updates."}
+          </DialogDescription>
         </DialogHeader>
         {submitSuccess ? (
           <div className="py-4">

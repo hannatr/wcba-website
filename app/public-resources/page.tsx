@@ -1,8 +1,9 @@
 "use server";
 
-import { Separator } from "@/components/ui/separator";
-import Disclaimer from "@/components/Disclaimer";
 import Link from "next/link";
+
+import Disclaimer from "@/components/Disclaimer";
+import { Separator } from "@/components/ui/separator";
 
 export default async function PublicResourcesPage() {
   return (

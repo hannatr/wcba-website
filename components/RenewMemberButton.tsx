@@ -1,14 +1,16 @@
 "use client";
 
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
 
 export default function RenewMemberButton() {
   // const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +62,9 @@ export default function RenewMemberButton() {
           <DialogTitle className="text-red-600">
             Feature Coming Soon
           </DialogTitle>
+          <DialogDescription>
+            Availability update for online membership renewal.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-4">
           {/* <Button

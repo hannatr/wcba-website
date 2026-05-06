@@ -1,7 +1,7 @@
 "use server";
 
-import { Separator } from "@/components/ui/separator";
 import Disclaimer from "@/components/Disclaimer";
+import { Separator } from "@/components/ui/separator";
 
 export default async function ContactPage() {
   return (

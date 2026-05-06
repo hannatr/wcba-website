@@ -1,15 +1,16 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { useState } from "react";
+
 import {
   MemberCategory,
   MemberCategories,
   isCustomCategory,
   CustomCategory,
 } from "@/actions/types/members";
-import { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface CategorySelectorProps {
   selectedCategories?: MemberCategories;
